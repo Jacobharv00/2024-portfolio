@@ -6,7 +6,7 @@ import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { StatList, StatListItem } from '@/components/StatList'
-import imageLeslieAlexander from '@/images/team/leslie-alexander.jpg'
+import imageJacobHarvey from '@/images/jacob-harvey.jpg'
 
 function ProfilePicture() {
   return (
@@ -23,8 +23,8 @@ function ProfilePicture() {
                 <FadeIn>
                   <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
                     <Image
-                      alt=""
-                      src={imageLeslieAlexander}
+                      alt="Image of Jacob Harvey"
+                      src={imageJacobHarvey}
                       className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
                     />
                     <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
@@ -65,7 +65,7 @@ export default async function About() {
             mastery, and robust coding to embed enduring systems. Passionate to
             push technological boundaries & transform complex landscapes into
             seamless user experiences. I love solving immense backend complexity
-            with simplified UI/UX to provide a smooth mobile/web experiences.
+            with simplified UI/UX to provide a smooth mobile & web experiences.
           </p>
         </div>
       </PageIntro>
@@ -74,15 +74,15 @@ export default async function About() {
         <StatList>
           <StatListItem
             value="12"
-            label="Multi-Tennant production web/mobile banking apps used by over 500k members and growing."
+            label="Successfully built and maintained secure multi-tenant web & mobile banking applications for over 500,000 users and counting, enabling convenient cross-platform finance management through robust and reliable large-scale software systems."
           />
           <StatListItem
             value="10"
-            label="Deployed projects to live domains for the world to see."
+            label="Actively built and deployed over 10 personal web & mobile applications to expand and enrich my development skills, validate innovative concepts, and translate ideas into functioning products with tangible impact."
           />
           <StatListItem
             value="1"
-            label="Graduated Flatiron School full stack software engineering program in 2021."
+            label="Completed an intensive full stack software engineering curriculum at Flatiron School in 2021, attaining competencies in modern web development technologies, backend languages and UI tools."
           />
         </StatList>
 

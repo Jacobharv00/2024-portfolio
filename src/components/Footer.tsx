@@ -2,13 +2,16 @@ import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
-import { Logo } from '@/components/Logo'
 import { socialMediaProfiles } from '@/components/SocialMedia'
 
 const navigation = [
   {
-    title: 'About Me',
-    links: [{ title: 'About', href: '/about' }],
+    title: 'Pages',
+    links: [
+      { title: 'About', href: '/about' },
+      { title: 'My Work', href: '/work' },
+      { title: 'Contact Me', href: '/contact' },
+    ],
   },
   {
     title: 'Connect',

@@ -6,7 +6,6 @@ import { Border } from '@/components/Border'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
-// import { Offices } from '@/components/Offices'
 import { PageIntro } from '@/components/PageIntro'
 import { SocialMedia } from '@/components/SocialMedia'
 
@@ -38,22 +37,40 @@ function TextInput({
 function ContactForm() {
   return (
     <FadeIn className="lg:order-last">
-      <form>
+      <form
+        action="https://getform.io/f/1af672b8-86ea-4fb2-9964-74701ee53c0c"
+        method="POST"
+      >
         <h2 className="font-display text-base font-semibold text-neutral-950">
           Email Me
         </h2>
         <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
-          <TextInput label="Name" name="name" autoComplete="name" />
           <TextInput
+            required
+            label="Name"
+            type="text"
+            name="name"
+            autoComplete="name"
+          />
+          <TextInput
+            required
             label="Email"
             type="email"
             name="email"
             autoComplete="email"
           />
-          <TextInput label="Message" name="message" />
+          <TextInput required label="Message" type="text" name="message" />
+
+          {/* <!-- add hidden Honeypot input to prevent spams --> */}
+          <TextInput
+            type="hidden"
+            name="_gotcha"
+            className="display:none !important"
+            label={''}
+          />
         </div>
         <Button type="submit" className="mt-10">
-          Let’s work together
+          Send
         </Button>
       </form>
     </FadeIn>
@@ -63,32 +80,40 @@ function ContactForm() {
 function ContactDetails() {
   return (
     <FadeIn>
-      <h2 className="font-display text-base font-semibold text-neutral-950">
+      <h2 className="font-display text-base font-bold text-neutral-950">
         Resume
       </h2>
       <p className="mt-6 text-base text-neutral-600">
-        See my resume. Fill this in more
+        Check out my resume to learn more about my expertise and experience.
       </p>
-
-      {/* <Offices className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2" /> */}
-
-      <Border className="mt-16 pt-16">
+      <br />
+      <Link
+        href="https://violet-drusilla-22.tiiny.site"
+        target="_blank"
+        className="font-semibold text-neutral-600 hover:text-neutral-950"
+      >
+        2024 Resume
+      </Link>
+      <Border className="mt-8 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950">
           Get In Touch
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
-            ['LinkedIn', 'linkedin/jacobharv19.com'],
-            ['Email', 'jacobharv00.com'],
-          ].map(([label, email]) => (
-            <div key={email}>
+            ['LinkedIn', 'https://linkedin.com/in/jacobharvey19'],
+            ['Email', 'jacobharv00@gmail.com'],
+          ].map(([label, item]) => (
+            <div key={item}>
               <dt className="font-semibold text-neutral-950">{label}</dt>
               <dd>
                 <Link
-                  href={`mailto:${email}`}
+                  href={
+                    item === 'jacobharv00@gmail.com' ? `mailto:${item}` : item
+                  }
                   className="text-neutral-600 hover:text-neutral-950"
+                  target="_blank"
                 >
-                  {email}
+                  {item}
                 </Link>
               </dd>
             </div>
@@ -114,8 +139,8 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <>
-      <PageIntro eyebrow="Contact Me" title="Let’s work together">
-        <p>Can’t wait to hear from you.</p>
+      <PageIntro eyebrow="" title="Let’s work together">
+        <></>
       </PageIntro>
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">

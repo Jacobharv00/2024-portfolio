@@ -11,7 +11,7 @@ function ProjectItem({
   invert?: boolean
 }) {
   return (
-    <address
+    <div
       className={clsx(
         'text-sm not-italic',
         invert ? 'text-neutral-300' : 'text-neutral-600',
@@ -22,7 +22,7 @@ function ProjectItem({
       </strong>
       <br />
       {children}
-    </address>
+    </div>
   )
 }
 
