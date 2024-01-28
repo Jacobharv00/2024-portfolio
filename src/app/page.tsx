@@ -95,7 +95,7 @@ function TimeLine() {
               development to allow for modern cross-platform banking solutions
               serving over 500k members.
             </ListItem>
-            <ListItem title="2021-2021">
+            <ListItem title="2021">
               Accepted into Flatiron School for Full Stack Software Engineering
               program where I learned a variety of programming languages and
               techniques for building full stack applications using JavaScript,
