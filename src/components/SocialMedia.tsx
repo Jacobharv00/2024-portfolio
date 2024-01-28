@@ -2,10 +2,10 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import gitHubIcon from '@/images/github.svg'
-import linkedInIcon from '@/images/linkedin.svg'
-import mediumIcon from '@/images/medium.svg'
-import resumeIcon from '@/images/resume.svg'
+import gitHubIcon from '../../public/images/github.svg'
+import linkedInIcon from '../../public/images/linkedin.svg'
+import mediumIcon from '../../public/images/medium.svg'
+import resumeIcon from '../../public/images/resume.svg'
 
 const svgWidth = 35
 

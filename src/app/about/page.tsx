@@ -6,7 +6,7 @@ import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { StatList, StatListItem } from '@/components/StatList'
-import imageJacobHarvey from '@/images/jacob-harvey.jpg'
+import imageJacobHarvey from '../../../public/images/jacob-harvey.jpg'
 
 function ProfilePicture() {
   return (

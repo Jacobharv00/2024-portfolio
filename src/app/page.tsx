@@ -5,7 +5,7 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
-import imageLaptopDesk from '@/images/laptop-desk.jpg'
+import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
 
 function Quote() {
   return (
