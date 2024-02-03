@@ -48,8 +48,7 @@ function ProfilePicture() {
 
 export const metadata: Metadata = {
   title: 'About Me',
-  description:
-    'About me page describing a little about myself and what I can offer',
+  description: 'About me page describing myself and what I am about.',
 }
 
 export default async function About() {

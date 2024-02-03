@@ -116,7 +116,7 @@ function TimeLine() {
 
 export const metadata: Metadata = {
   description:
-    'Jacob Harvey portfolio displaying my project, skills, and about me',
+    'My portfolio displaying my projects, skills, and everything about me',
 }
 
 export default async function Home() {
