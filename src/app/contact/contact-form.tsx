@@ -1,21 +1,38 @@
 'use client'
 
-import { useState, useId, FormEvent, useEffect } from 'react'
+import { useState, useId, useEffect } from 'react'
 
 import { Button } from '@/components/Button'
 import { FadeIn } from '@/components/FadeIn'
 import ReCAPTCHA from 'react-google-recaptcha'
 
+import type { ChangeEvent } from 'react'
+
 const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
+interface FormValues {
+  name: string
+  email: string
+  message: string
+}
 
 export function ContactForm() {
   const [captcha, setCaptcha] = useState<string | null>()
 
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<FormValues>({
     name: '',
     email: '',
     message: '',
   })
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
 
   useEffect(() => {
     setFormValues({ name: '', email: '', message: '' })
@@ -39,9 +56,7 @@ export function ContactForm() {
               name="name"
               autoComplete="name"
               value={formValues.name}
-              onChange={(e) =>
-                setFormValues({ ...formValues, name: e.target.value })
-              }
+              onChange={handleChange}
             />
             <TextInput
               required
@@ -50,9 +65,7 @@ export function ContactForm() {
               name="email"
               autoComplete="email"
               value={formValues.email}
-              onChange={(e) =>
-                setFormValues({ ...formValues, email: e.target.value })
-              }
+              onChange={handleChange}
             />
             <TextInput
               required
@@ -60,9 +73,7 @@ export function ContactForm() {
               type="text"
               name="message"
               value={formValues.message}
-              onChange={(e) =>
-                setFormValues({ ...formValues, message: e.target.value })
-              }
+              onChange={handleChange}
             />
           </div>
           <div className="flex w-full flex-col items-end pt-6">
