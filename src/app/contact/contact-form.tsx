@@ -1,87 +1,20 @@
 'use client'
 
-import { useState, useId } from 'react'
+import { useState, useId, FormEvent } from 'react'
 
 import { Button } from '@/components/Button'
 import { FadeIn } from '@/components/FadeIn'
-import { useReCaptcha } from 'next-recaptcha-v3'
-import Script from 'next/script'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 export function ContactForm() {
-  const { grecaptcha } = useReCaptcha()
-
-  interface FormProps {
-    name?: string
-    email?: string
-    message?: string
-    'g-recaptcha-response'?: string
-  }
-
-  const [query, setQuery] = useState<FormProps>({
-    name: '',
-    email: '',
-    message: '',
-    'g-recaptcha-response': '',
-  })
-
-  const [successMessage, setSuccessMessage] = useState<string>('')
-
-  const handleChange = () => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name
-    const value = e.target.value && e.target.value
-
-    setQuery((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
-  }
-
-  const onFormSubmit = (e: any) => {
-    e.preventDefault()
-
-    const formData = new FormData()
-    Object.entries(query).forEach(([key, value]) => {
-      formData.append(key, value)
-    })
-
-    fetch('https://getform.io/f/1af672b8-86ea-4fb2-9964-74701ee53c0c', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(() =>
-        setQuery({
-          name: '',
-          email: '',
-          message: '',
-        }),
-      )
-      .then(() => setSuccessMessage('Successfully sent email!'))
-  }
+  const [captcha, setCaptcha] = useState<string | null>()
 
   return (
     <>
-      <Script
-        src={`https://www.google.com/recaptcha/api.js?render=${String(siteKey)}`}
-        onReady={() => {
-          grecaptcha &&
-            grecaptcha.ready(function () {
-              grecaptcha
-                .execute(String(siteKey), {
-                  action: 'submit',
-                })
-                .then(function (token) {
-                  setQuery({
-                    'g-recaptcha-response': token,
-                  })
-                })
-            })
-        }}
-      />
       <FadeIn className="lg:order-last">
         <form
-          onSubmit={onFormSubmit}
           action="https://getform.io/f/1af672b8-86ea-4fb2-9964-74701ee53c0c"
           method="POST"
         >
@@ -95,8 +28,6 @@ export function ContactForm() {
               type="text"
               name="name"
               autoComplete="name"
-              value={query.name}
-              onChange={handleChange()}
             />
             <TextInput
               required
@@ -104,26 +35,24 @@ export function ContactForm() {
               type="email"
               name="email"
               autoComplete="email"
-              value={query.email}
-              onChange={handleChange()}
             />
-            <TextInput
-              required
-              label="Message"
-              type="text"
-              name="message"
-              value={query.message}
-              onChange={handleChange()}
-            />
+            <TextInput required label="Message" type="text" name="message" />
           </div>
-          <Button type="submit" className="mt-10">
-            Send
-          </Button>
-          {successMessage !== '' && (
-            <p className="mt-6 font-display text-2xl font-semibold text-green-500 sm:text-2xl">
-              {successMessage}
-            </p>
-          )}
+          <div className="flex w-full flex-col items-end pt-6">
+            <ReCAPTCHA
+              sitekey={String(siteKey)}
+              className="mb-4"
+              onChange={setCaptcha}
+            />
+            {captcha && (
+              <Button
+                type="submit"
+                className="sm:w-50 flex h-14 w-72 items-center justify-center rounded-xl"
+              >
+                Send
+              </Button>
+            )}
+          </div>
         </form>
       </FadeIn>
     </>
