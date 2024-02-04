@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useId, FormEvent } from 'react'
+import { useState, useId, FormEvent, useEffect } from 'react'
 
 import { Button } from '@/components/Button'
 import { FadeIn } from '@/components/FadeIn'
@@ -10,6 +10,16 @@ const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 export function ContactForm() {
   const [captcha, setCaptcha] = useState<string | null>()
+
+  const [formValues, setFormValues] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+
+  useEffect(() => {
+    setFormValues({ name: '', email: '', message: '' })
+  }, [])
 
   return (
     <>
@@ -28,6 +38,10 @@ export function ContactForm() {
               type="text"
               name="name"
               autoComplete="name"
+              value={formValues.name}
+              onChange={(e) =>
+                setFormValues({ ...formValues, name: e.target.value })
+              }
             />
             <TextInput
               required
@@ -35,8 +49,21 @@ export function ContactForm() {
               type="email"
               name="email"
               autoComplete="email"
+              value={formValues.email}
+              onChange={(e) =>
+                setFormValues({ ...formValues, email: e.target.value })
+              }
             />
-            <TextInput required label="Message" type="text" name="message" />
+            <TextInput
+              required
+              label="Message"
+              type="text"
+              name="message"
+              value={formValues.message}
+              onChange={(e) =>
+                setFormValues({ ...formValues, message: e.target.value })
+              }
+            />
           </div>
           <div className="flex w-full flex-col items-end pt-6">
             <ReCAPTCHA
