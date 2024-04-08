@@ -67,15 +67,15 @@ function TimeLine() {
       >
         <p>
           2+ years of experience developing innovative web & mobile applications
-          for Mahalo Banking leveraging TypeScript and React Native. I have
-          specialized in understanding complex requirements for neurodiverse
-          users and translating them into intuitive digital experiences. In my
-          day-to-day work, I aim to balance simplicity with depth in both design
-          and technical implementation. My goal is for the user journey to be
-          frictionless while I solve complex problems behind the scenes through
-          clean, modular code. I believe my specialized experience and passion
-          for accessibility can add value to customer-focused development teams
-          pushing the boundaries.
+          for Mahalo Banking leveraging TypeScript, React Native and other
+          modern technologies. I have specialized in understanding complex
+          requirements for neurodiverse users and translating them into
+          intuitive digital experiences. In my day-to-day work, I aim to balance
+          simplicity with depth in both design and technical implementation. My
+          goal is for the user journey to be frictionless while I solve complex
+          problems behind the scenes through clean, modular code. I believe my
+          specialized experience and passion for accessibility can add value to
+          customer-focused development teams pushing the boundaries.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -116,7 +116,16 @@ function TimeLine() {
 
 export const metadata: Metadata = {
   description:
-    'My portfolio displaying my projects, skills, and everything about me',
+    'My personal portfolio displaying my projects, skills, and everything about me.',
+  openGraph: {
+    images: [
+      {
+        url: '/images/homescreen.png',
+        width: 800,
+        height: 600,
+      },
+    ],
+  },
 }
 
 export default async function Home() {
@@ -126,14 +135,14 @@ export default async function Home() {
       section: 'frontEnd',
       title: 'Front End',
       description:
-        'CSS, HTML, JavaScript, Next JS, React Native, React, TypeScript',
+        'CSS, HTML, JavaScript, NextJS, React Native, React, TypeScript',
     },
     {
       id: 2,
       section: 'backEnd',
       title: 'Back End',
       description:
-        'C#, DOTNET Web API, Entity Framework, Microsoft SQLServer, MySql, Postgres, Ruby, Ruby On Rails, Solidity, SQL',
+        'C#, DOTNET Web API, Entity Framework, Microsoft SQLServer, MySql, PostgresSQL, Ruby, Ruby On Rails, Solidity, SQL',
     },
     {
       id: 3,
@@ -154,8 +163,8 @@ export default async function Home() {
           <p className="mt-6 text-xl text-neutral-600">
             Innovative software developer modernizing banking experiences.
             Currently I have been building a cutting-edge typescript & react
-            native banking app from scratch that is now relied upon by 500K+
-            members across 10 live production apps. I blend strategic vision, UI
+            native banking app from scratch that is now relied upon by 1M+
+            members across 30 live production apps. I blend strategic vision, UI
             mastery, and robust coding to embed enduring systems. Passionate to
             push technological boundaries & transform complex landscapes into
             seamless user experiences. I love solving immense backend complexity

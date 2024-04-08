@@ -59,8 +59,8 @@ export default async function About() {
           <p>
             Innovative software developer modernizing banking experiences.
             Currently I have been building a cutting-edge typescript & react
-            native banking app from scratch that is now relied upon by 500K+
-            members across 10 live production apps. I blend strategic vision, UI
+            native banking app from scratch that is now relied upon by 1M+
+            members across 30 live production apps. I blend strategic vision, UI
             mastery, and robust coding to embed enduring systems. Passionate to
             push technological boundaries & transform complex landscapes into
             seamless user experiences. I love solving immense backend complexity
@@ -73,7 +73,7 @@ export default async function About() {
         <StatList>
           <StatListItem
             value="12"
-            label="Successfully built and maintained secure multi-tenant web & mobile banking applications for over 500,000 users and counting, enabling convenient cross-platform finance management through robust and reliable large-scale software systems."
+            label="Successfully built and maintained secure multi-tenant web & mobile banking applications for over 1 million users and counting, enabling convenient cross-platform finance management through robust and reliable large-scale software systems."
           />
           <StatListItem
             value="10"
