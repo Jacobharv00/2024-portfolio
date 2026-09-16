@@ -1,27 +1,80 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
-function ProjectItem({
-  name,
-  children,
-  invert = false,
-}: {
+type ProjectLink = { label: string; href: string }
+
+type Project = {
   name: string
-  children: React.ReactNode
-  invert?: boolean
+  description: string
+  tech: string
+  links: Array<ProjectLink>
+}
+
+const projects: Array<Project> = [
+  {
+    name: 'Vamo',
+    description:
+      'A street food app with two audiences in one download. Diners find the taco cart, the pop-up and the market happening nearby. Vendors go live on the map, post menus and take pickup and catering requests. Live on iOS and Android.',
+    tech: 'React Native, Expo, TypeScript, Tamagui, Supabase, Redux Toolkit',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193' },
+      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.vamo.app' },
+    ],
+  },
+  {
+    name: 'Vamo Host',
+    description:
+      'The organizer side of the marketplace, for the people who run the markets. Vendor applications, slots, payments and event management, on the same backend as the main app. Ships fall 2026.',
+    tech: 'React Native, Expo, TypeScript, Supabase, Stripe',
+    links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
+  },
+  {
+    name: 'Vamo Website',
+    description:
+      'Started as a landing page and is becoming a third client against the same database, so diners, vendors and organizers can do in a browser what they do in the apps.',
+    tech: 'Next.js, TypeScript, Tailwind, Supabase',
+    links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
+  },
+]
+
+function ProjectItem({
+  project,
+  invert,
+}: {
+  project: Project
+  invert: boolean
 }) {
   return (
-    <div
-      className={clsx(
-        'text-sm not-italic',
-        invert ? 'text-neutral-300' : 'text-neutral-600',
-      )}
-    >
-      <strong className={invert ? 'text-white' : 'text-neutral-950'}>
-        {name}
+    <div className={clsx('text-sm', invert ? 'text-neutral-300' : 'text-neutral-600')}>
+      <strong
+        className={clsx(
+          'font-display text-xl font-semibold',
+          invert ? 'text-white' : 'text-neutral-950',
+        )}
+      >
+        {project.name}
       </strong>
-      <br />
-      {children}
+      <p className="mt-4">{project.description}</p>
+      <p className={clsx('mt-4', invert ? 'text-neutral-400' : 'text-neutral-500')}>
+        {project.tech}
+      </p>
+      <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2">
+        {project.links.map((link) => (
+          <Link
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            className={clsx(
+              'text-sm font-semibold transition',
+              invert
+                ? 'text-vamo-400 hover:text-vamo-100'
+                : 'text-vamo-600 hover:text-vamo-700',
+            )}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }
@@ -32,55 +85,11 @@ export function Projects({
 }: React.ComponentPropsWithoutRef<'ul'> & { invert?: boolean }) {
   return (
     <ul role="list" {...props}>
-      <li>
-        <ProjectItem name="Crypto Cookie" invert={invert}>
-          Web 3 app that allows users to trade ethereum through the blockchain
-          using metamask as an ethereum wallet. You can connect your metamask
-          wallet and trade crypto with different accounts. Web 3.0 is the
-          future!
-          <br />
-          <br />
-          Tech: React, Solidity, Ethers.js, Alchemy, Tailwind
-          <br />
-          <br />
-          <Link
-            href="https://github.com/Jacobharv00/crypto-cookie"
-            className="mr-8 mt-4 text-sm font-semibold text-neutral-950 text-white transition hover:text-neutral-700"
-          >
-            GitHub
-          </Link>
-          <Link
-            href="https://cryptocookie.netlify.app"
-            className="mt-4 text-sm font-semibold text-neutral-950 text-white transition hover:text-neutral-700"
-          >
-            Live Site
-          </Link>
-        </ProjectItem>
-      </li>
-      <li>
-        <ProjectItem name="E-Boss" invert={invert}>
-          Ecommerce store that sells the hottest and sleekest products. E-Boss
-          is a e-commerce store where you can find everything you need to get
-          your developer office all set up. Payments are always secured.
-          <br />
-          <br />
-          Tech: React, Commerce.js, Stripe.js, Material UI
-          <br />
-          <br />
-          <Link
-            href="https://github.com/Jacobharv00/e-commerce"
-            className="mr-8 mt-4 text-sm font-semibold text-neutral-950 text-white transition hover:text-neutral-700"
-          >
-            GitHub
-          </Link>
-          <Link
-            href="https://eboss.netlify.app"
-            className="mt-4 text-sm font-semibold text-neutral-950 text-white transition hover:text-neutral-700"
-          >
-            Live Site
-          </Link>
-        </ProjectItem>
-      </li>
+      {projects.map((project) => (
+        <li key={project.name}>
+          <ProjectItem project={project} invert={invert} />
+        </li>
+      ))}
     </ul>
   )
 }

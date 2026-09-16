@@ -1,0 +1,31 @@
+# Jacob Goldring
+
+> Full stack engineer and co-founder. Builds white-label digital banking software
+> by day and runs Vamo, a street food platform, as co-founder and CTO.
+
+## About
+
+Jacob Goldring writes mobile apps, the APIs behind them and the data layer
+underneath. His day job is a white-label digital banking platform for credit
+unions, where one codebase ships as a separately themed and separately
+configured product for each credit union. He is also backup on production
+mobile devops.
+
+He is co-founder and CTO of Vamo, a street food platform with three surfaces
+on one backend. Vamo is a double sided app for diners and vendors, Vamo Host
+serves the organizers who run the markets, and the website brings both to the
+browser. Vamo is live on the App Store and Google Play.
+
+## Stack
+
+Mobile: React Native, Expo, TypeScript, Redux Toolkit, React Native Web
+Web: Next.js, React, Vue, Tailwind
+API: C#, .NET, Entity Framework, Dapper, Azure, Docker
+Data: SQL Server, PostgreSQL, Supabase, MySQL
+
+## Links
+
+- Site: https://jacobharv.dev
+- Vamo: https://hellovamo.app
+- GitHub: https://github.com/JacobHarv00
+- LinkedIn: https://www.linkedin.com/in/jacobharvey19

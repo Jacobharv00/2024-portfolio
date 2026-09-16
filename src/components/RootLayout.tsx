@@ -67,13 +67,18 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <h1 className="font-display text-2xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-3xl">
-            Jacob Harvey
-          </h1>
+          <span
+            className={clsx(
+              'whitespace-nowrap font-display text-xl font-medium tracking-tight sm:text-2xl',
+              invert ? 'text-white' : 'text-neutral-950 dark:text-white',
+            )}
+          >
+            Jacob Goldring
+          </span>
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
-            Contact Me
+            Contact
           </Button>
           <button
             ref={toggleRef}
@@ -83,7 +88,7 @@ function Header({
             aria-controls={panelId}
             className={clsx(
               'group -m-2.5 rounded-full p-2.5 transition',
-              invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
+              invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10 dark:hover:bg-white/10',
             )}
             aria-label="Toggle navigation"
           >
@@ -92,7 +97,7 @@ function Header({
                 'h-6 w-6',
                 invert
                   ? 'fill-white group-hover:fill-neutral-200'
-                  : 'fill-neutral-950 group-hover:fill-neutral-700',
+                  : 'fill-neutral-950 dark:fill-white group-hover:fill-neutral-700',
               )}
             />
           </button>
@@ -134,8 +139,8 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/work">My Work</NavigationItem>
-        <NavigationItem href="/about">About Me</NavigationItem>
+        <NavigationItem href="/work">Work</NavigationItem>
+        <NavigationItem href="/about">About</NavigationItem>
       </NavigationRow>
     </nav>
   )
@@ -234,14 +239,14 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       <motion.div
         layout
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-white pt-14"
+        className="relative flex flex-auto overflow-hidden bg-white pt-14 dark:bg-neutral-950"
       >
         <motion.div
           layout
           className="relative isolate flex w-full flex-col pt-9"
         >
           <GridPattern
-            className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-neutral-50 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
+            className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-neutral-50 stroke-neutral-950/5 dark:fill-neutral-900 dark:stroke-white/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
             yOffset={-96}
             interactive
           />

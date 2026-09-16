@@ -1,92 +1,64 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 
-import { Border } from '@/components/Border'
 import { Container } from '@/components/Container'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
+import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
-import { StatList, StatListItem } from '@/components/StatList'
-import imageJacobHarvey from '../../../public/images/jacob-harvey.jpg'
+import imageJacobGoldring from '../../../public/images/jacob-goldring.jpg'
 
-function ProfilePicture() {
+function Portrait() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
-      <FadeInStagger>
-        <Border as={FadeIn} />
-        <div className="grid grid-cols-1 gap-6 pt-12 sm:pt-16 lg:grid-cols-4 xl:gap-8">
-          <div className="lg:col-span-3">
-            <ul
-              role="list"
-              className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-2"
-            >
-              <li>
-                <FadeIn>
-                  <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
-                    <Image
-                      alt="Image of Jacob Harvey"
-                      src={imageJacobHarvey}
-                      className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
-                      <p className="font-display text-base/6 font-semibold tracking-wide text-white">
-                        Jacob Harvey
-                      </p>
-                      <p className="mt-2 text-sm text-white">
-                        Software Developer at Mahalo Technologies, Inc
-                      </p>
-                    </div>
-                  </div>
-                </FadeIn>
-              </li>
-            </ul>
+      <FadeIn>
+        <div className="group relative max-w-md overflow-hidden rounded-3xl bg-neutral-100 dark:bg-neutral-900">
+          <Image
+            alt="Jacob Goldring"
+            src={imageJacobGoldring}
+            sizes="(min-width: 640px) 28rem, 100vw"
+            className="h-96 w-full object-cover grayscale transition duration-500 ease-apple-out motion-safe:group-hover:scale-105"
+          />
+          <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
+            <p className="font-display text-base/6 font-semibold tracking-wide text-white">
+              Jacob Goldring
+            </p>
+            <p className="mt-2 text-sm text-white">
+              Full stack engineer. Co-founder and CTO at Vamo.
+            </p>
           </div>
         </div>
-      </FadeInStagger>
+      </FadeIn>
     </Container>
   )
 }
 
 export const metadata: Metadata = {
-  title: 'About Me',
-  description: 'About me page describing myself and what I am about.',
+  title: 'About',
+  description:
+    'Jacob Goldring taught himself to code in 2020 and now builds white-label digital banking software and runs Vamo as co-founder and CTO.',
+  alternates: { canonical: '/about' },
 }
 
-export default async function About() {
+export default function About() {
   return (
     <>
-      <PageIntro eyebrow="About Me" title="Building the future">
+      <PageIntro eyebrow="About" title="Who I am.">
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
-            Innovative software developer modernizing banking experiences.
-            Currently I have been building a cutting-edge typescript & react
-            native banking app from scratch that is now relied upon by 1M+
-            members across 30 live production apps. I blend strategic vision, UI
-            mastery, and robust coding to embed enduring systems. Passionate to
-            push technological boundaries & transform complex landscapes into
-            seamless user experiences. I love solving immense backend complexity
-            with simplified UI/UX to provide a smooth mobile & web experiences.
+            I taught myself to code in 2020 with a course I took after work.
+            Five years later I write software a bank depends on, and I
+            co-founded a company that ships to the App Store. The work is the
+            same either way, take something complicated and make it feel simple
+            to use.
+          </p>
+          <p>
+            Most of what I build is private. A white-label banking platform on
+            one side, a company still shipping on the other. What I can show
+            lives on the work page.
           </p>
         </div>
       </PageIntro>
 
-      <Container className="mt-16">
-        <StatList>
-          <StatListItem
-            value="12"
-            label="Successfully built and maintained secure multi-tenant web & mobile banking applications for over 1 million users and counting, enabling convenient cross-platform finance management through robust and reliable large-scale software systems."
-          />
-          <StatListItem
-            value="10"
-            label="Actively built and deployed over 10 personal web & mobile applications to expand and enrich my development skills, validate innovative concepts, and translate ideas into functioning products with tangible impact."
-          />
-          <StatListItem
-            value="1"
-            label="Completed an intensive full stack software engineering curriculum at Flatiron School in 2021, attaining competencies in modern web development technologies, backend languages and UI tools."
-          />
-        </StatList>
-
-        <ProfilePicture />
-      </Container>
+      <Portrait />
     </>
   )
 }

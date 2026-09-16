@@ -1,4 +1,6 @@
 import { type Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
@@ -6,106 +8,211 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
+import imageVamoCover from '../../public/images/vamo-cover.png'
+import imageVamoLogo from '../../public/images/vamo-logo.png'
 
-function Quote() {
+type Product = {
+  name: string
+  description: string
+  href: string
+  linkLabel: string
+}
+
+const products: Array<Product> = [
+  {
+    name: 'Vamo',
+    description:
+      'Open it to see the taco cart, the pop-up, the market happening four blocks away. Vendors run their whole operation from the same download, going live on the map, posting menus, taking pickup and catering requests. Live on iOS and Android.',
+    href: 'https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193',
+    linkLabel: 'App Store',
+  },
+  {
+    name: 'Vamo Host',
+    description:
+      'The other side of the marketplace, built for the people who run the markets. Vendor applications, slots, payments and events. Ships fall 2026.',
+    href: 'https://hellovamo.app',
+    linkLabel: 'hellovamo.app',
+  },
+  {
+    name: 'Vamo Website',
+    description:
+      'Started as a landing page. It is turning into a third client against the same database, so everything the apps do works in a browser too.',
+    href: 'https://hellovamo.app',
+    linkLabel: 'hellovamo.app',
+  },
+]
+
+const stack = [
+  { id: 'mobile', title: 'Mobile', items: 'React Native, Expo, TypeScript, Redux Toolkit, React Native Web' },
+  { id: 'web', title: 'Web', items: 'Next.js, React, Vue, Tailwind, Figma' },
+  { id: 'api', title: 'API', items: 'C#, .NET Web API, Entity Framework, Dapper, Azure, Docker, Swagger' },
+  { id: 'data', title: 'Data', items: 'SQL Server, PostgreSQL, Supabase, MySQL, SQLite' },
+]
+
+function Hero() {
   return (
-    <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56 ">
-      <Container>
-        <FadeIn className="flex items-center gap-x-8">
-          <div className="h-px flex-auto bg-neutral-700" />
-        </FadeIn>
-        <FadeInStagger faster>
-          <h2 className="pt-8 font-display text-2xl font-medium tracking-tight text-neutral-950 text-white [text-wrap:balance] sm:text-3xl">
-            Never stop learning; For when we stop learning, we stop growing. -
-            Loyal Jack Lewman
-          </h2>
-        </FadeInStagger>
-      </Container>
-    </div>
+    <Container className="mt-24 sm:mt-32 md:mt-56">
+      <FadeIn className="max-w-4xl">
+        <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl dark:text-white">
+          Full stack engineer. Co-founder and CTO.
+        </h1>
+        <p className="mt-8 max-w-2xl text-xl text-neutral-600 dark:text-neutral-400">
+          I write the mobile app, the API behind it, and the data layer
+          underneath. By day that is a white-label digital banking platform.
+          After hours it is Vamo, a street food platform I co-founded. One app
+          for diners and vendors, another for market organizers, and a website
+          that does both.
+        </p>
+      </FadeIn>
+    </Container>
   )
 }
 
-function TechCard({ technologies }: { technologies: any }) {
+function VamoSection() {
   return (
     <>
-      <SectionIntro title="Technologies" className="mt-24 sm:mt-32 lg:mt-40">
+      <SectionIntro
+        eyebrow="Vamo"
+        title="Street food, found."
+        className="mt-24 sm:mt-32 lg:mt-40"
+      >
         <p>
-          I possess extensive expertise building, optimizing and securing robust
-          front-end apps, scalable back-end systems and full-stack solutions
-          end-to-end leveraging diverse languages, frameworks and tools.
+          My co-founder and I build three products against one backend, and I
+          own the mobile and web side of all of them.
         </p>
       </SectionIntro>
+
       <Container className="mt-16">
-        <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {technologies.map((tech: any) => {
-            return (
-              <FadeIn key={tech.id} className="flex">
-                <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
-                  <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
-                    {tech.title}
-                  </p>
-                  <p className="mt-4 text-base text-neutral-600">
-                    {tech.description}
-                  </p>
-                </article>
-              </FadeIn>
-            )
-          })}
+        <FadeIn>
+          <div className="overflow-hidden rounded-3xl bg-vamo-50 ring-1 ring-neutral-950/5 dark:bg-vamo-900/20 dark:ring-white/10">
+            <Image
+              src={imageVamoCover}
+              alt="Vamo"
+              className="h-auto w-full"
+              sizes="(min-width: 1216px) 68rem, 100vw"
+              priority
+            />
+          </div>
+        </FadeIn>
+
+        <FadeInStagger className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {products.map((product) => (
+            <FadeIn key={product.name} className="flex">
+              <article className="flex w-full flex-col rounded-3xl p-8 ring-1 ring-neutral-950/5 transition duration-300 ease-apple-out hover:bg-neutral-50 dark:ring-white/10 dark:hover:bg-neutral-900">
+                <Image
+                  src={imageVamoLogo}
+                  alt=""
+                  className="h-12 w-12 rounded-xl"
+                  sizes="48px"
+                />
+                <h3 className="mt-6 font-display text-2xl font-semibold text-neutral-950 dark:text-white">
+                  {product.name}
+                </h3>
+                <p className="mt-4 flex-auto text-base text-neutral-600 dark:text-neutral-400">
+                  {product.description}
+                </p>
+                <Link
+                  href={product.href}
+                  target="_blank"
+                  className="mt-6 text-sm font-semibold text-vamo-600 transition hover:text-vamo-700 dark:text-vamo-400 dark:hover:text-vamo-100"
+                >
+                  {product.linkLabel}
+                </Link>
+              </article>
+            </FadeIn>
+          ))}
         </FadeInStagger>
       </Container>
     </>
   )
 }
 
-function TimeLine() {
+function MahaloSection() {
+  return (
+    <SectionIntro
+      eyebrow="Mahalo Banking"
+      title="One codebase, a different product for every credit union."
+      className="mt-24 sm:mt-32 lg:mt-40"
+    >
+      <p>
+        Digital banking for credit unions, where no two credit unions want the
+        same app. One codebase ships as a separately themed, separately
+        configured product for each one, down to which vendor integrations it
+        talks to and which features exist at all. Shipping a feature means
+        shipping every version of it that somebody might switch on.
+      </p>
+    </SectionIntro>
+  )
+}
+
+function StackSection() {
   return (
     <>
       <SectionIntro
-        eyebrow=""
-        title="TimeLine"
+        eyebrow="Stack"
+        title="What I reach for."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p>
-          2+ years of experience developing innovative web & mobile applications
-          for Mahalo Banking leveraging TypeScript, React Native and other
-          modern technologies. I have specialized in understanding complex
-          requirements for neurodiverse users and translating them into
-          intuitive digital experiences. In my day-to-day work, I aim to balance
-          simplicity with depth in both design and technical implementation. My
-          goal is for the user journey to be frictionless while I solve complex
-          problems behind the scenes through clean, modular code. I believe my
-          specialized experience and passion for accessibility can add value to
-          customer-focused development teams pushing the boundaries.
-        </p>
+        <p>Grouped by where it sits.</p>
       </SectionIntro>
+      <Container className="mt-16">
+        <FadeInStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {stack.map((group) => (
+            <FadeIn key={group.id} className="flex">
+              <article className="flex w-full flex-col rounded-3xl p-8 ring-1 ring-neutral-950/5 transition duration-300 ease-apple-out hover:bg-neutral-50 dark:ring-white/10 dark:hover:bg-neutral-900">
+                <h3 className="font-display text-2xl font-semibold text-neutral-950 dark:text-white">
+                  {group.title}
+                </h3>
+                <p className="mt-4 text-base text-neutral-600 dark:text-neutral-400">
+                  {group.items}
+                </p>
+              </article>
+            </FadeIn>
+          ))}
+        </FadeInStagger>
+      </Container>
+    </>
+  )
+}
+
+function Timeline() {
+  return (
+    <>
+      <SectionIntro
+        eyebrow="Timeline"
+        title="How I got here."
+        className="mt-24 sm:mt-32 lg:mt-40"
+      />
       <Container className="mt-16">
         <div className="lg:flex lg:items-center lg:justify-end">
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
-            <FadeIn className="w-[33.75rem] flex-none lg:w-[45rem]">
+            <FadeIn className="w-full max-w-[33.75rem] flex-none lg:w-[45rem] lg:max-w-none">
               <StylizedImage
                 src={imageLaptopDesk}
-                sizes="(min-width: 1024px) 41rem, 31rem"
+                sizes="(min-width: 1024px) 41rem, (min-width: 640px) 31rem, 100vw"
                 className="justify-center lg:justify-end"
               />
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="2021 - Present">
-              Software Developer at Mahalo Banking, I spearhead mobile & web app
-              development to allow for modern cross-platform banking solutions
-              serving over 500k members.
+            <ListItem title="Vamo, now">
+              Co-founder and CTO. We shipped the street food app to iOS and
+              Android, and Vamo Host and the web client are being built on the
+              same backend. I own mobile and web devops across all three.
             </ListItem>
-            <ListItem title="2021">
-              Accepted into Flatiron School for Full Stack Software Engineering
-              program where I learned a variety of programming languages and
-              techniques for building full stack applications using JavaScript,
-              React, Ruby and Ruby on Rails.
+            <ListItem title="Mahalo Banking, 2021 to now">
+              Full stack on a white-label digital banking platform for credit
+              unions. I have rebuilt large pieces of both the mobile app and the
+              web platform, and I am backup on production mobile devops.
             </ListItem>
-            <ListItem title="2020-2021">
-              Started learning how to program by taking a Udemy JavaScript
-              Course everyday after work. Built my first todo application and
-              hangman game, and deployed them both live for anyone in the world
-              to use.
+            <ListItem title="Flatiron School, 2021">
+              Full stack software engineering program, learning JavaScript,
+              React, Ruby and Rails.
+            </ListItem>
+            <ListItem title="Started programming, 2020">
+              Taught myself to code with a Udemy JavaScript course after work
+              every day. Built a todo app and a hangman game, then put them both
+              online for anyone to use.
             </ListItem>
           </List>
         </div>
@@ -116,66 +223,18 @@ function TimeLine() {
 
 export const metadata: Metadata = {
   description:
-    'My personal portfolio displaying my projects, skills, and everything about me.',
-  openGraph: {
-    images: [
-      {
-        url: '/images/homescreen.png',
-        width: 800,
-        height: 600,
-      },
-    ],
-  },
+    'Jacob Goldring is a full stack engineer working on white-label digital banking, and the co-founder and CTO of Vamo.',
+  alternates: { canonical: '/' },
 }
 
-export default async function Home() {
-  const technologies = [
-    {
-      id: 1,
-      section: 'frontEnd',
-      title: 'Front End',
-      description:
-        'CSS, HTML, JavaScript, NextJS, React Native, React, TypeScript',
-    },
-    {
-      id: 2,
-      section: 'backEnd',
-      title: 'Back End',
-      description:
-        'C#, DOTNET Web API, Entity Framework, Microsoft SQLServer, MySql, PostgresSQL, Ruby, Ruby On Rails, Solidity, SQL',
-    },
-    {
-      id: 3,
-      section: 'tools',
-      title: 'Tools',
-      description:
-        'Alchemy API, Android Studio, AutoMapper, Azure, Babel, Bash Scripting, Bitrise, Docker, ethers.js, Expo, Figma, Git, Hardhat, JWT Auth, Native Base, Netlify, PostgreSQL, PostMan, React Native Debugger, React Native MMKV, Redux, Redux Took Kit, Selenium, Supabase, SQLite3, Styled Components, Swagger, Tailwind, Tamagui, XCode,',
-    },
-  ]
-
+export default function Home() {
   return (
     <>
-      <Container className="mt-24 sm:mt-32 md:mt-56">
-        <FadeIn className="max-w-3xl">
-          <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Software Developer
-          </h1>
-          <p className="mt-6 text-xl text-neutral-600">
-            Innovative software developer modernizing banking experiences.
-            Currently I have been building a cutting-edge typescript & react
-            native banking app from scratch that is now relied upon by 1M+
-            members across 30 live production apps. I blend strategic vision, UI
-            mastery, and robust coding to embed enduring systems. Passionate to
-            push technological boundaries & transform complex landscapes into
-            seamless user experiences. I love solving immense backend complexity
-            with simplified UI/UX to provide a smooth mobile & web experiences.
-          </p>
-        </FadeIn>
-      </Container>
-
-      <Quote />
-      <TechCard technologies={technologies} />
-      <TimeLine />
+      <Hero />
+      <VamoSection />
+      <MahaloSection />
+      <StackSection />
+      <Timeline />
     </>
   )
 }

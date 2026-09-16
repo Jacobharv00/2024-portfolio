@@ -45,7 +45,7 @@ export function ContactForm() {
           action="https://getform.io/f/1af672b8-86ea-4fb2-9964-74701ee53c0c"
           method="POST"
         >
-          <h2 className="font-display text-base font-semibold text-neutral-950">
+          <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
             Email Me
           </h2>
           <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
@@ -111,7 +111,7 @@ function TextInput({
         id={id}
         {...props}
         placeholder=" "
-        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl"
+        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 dark:text-white ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl"
       />
       <label
         htmlFor={id}
