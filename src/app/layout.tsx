@@ -67,13 +67,21 @@ const personSchema = {
   ],
 }
 
+/**
+ * Escapes characters that could terminate the surrounding script tag before the
+ * JSON-LD payload is injected. The payload is static, this is defence in depth.
+ */
+function serializeJsonLd(data: object) {
+  return JSON.stringify(data).replace(/</g, '\\u003c')
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full bg-neutral-950 text-base antialiased">
       <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(personSchema) }}
         />
         <RootLayout>{children}</RootLayout>
       </body>

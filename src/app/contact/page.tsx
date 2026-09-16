@@ -21,6 +21,7 @@ function ContactDetails() {
       <Link
         href="https://violet-drusilla-22.tiiny.site"
         target="_blank"
+            rel="noopener noreferrer"
         className="font-semibold text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
       >
         Resume
@@ -31,20 +32,29 @@ function ContactDetails() {
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
-            ['LinkedIn', 'https://linkedin.com/in/jacobharvey19'],
-            ['Email', 'jacobharv00@gmail.com'],
-          ].map(([label, item]) => (
-            <div key={item}>
-              <dt className="font-semibold text-neutral-950 dark:text-white">{label}</dt>
-              <dd>
+            {
+              label: 'LinkedIn',
+              display: 'jacobharvey19',
+              href: 'https://www.linkedin.com/in/jacobharvey19',
+            },
+            {
+              label: 'Email',
+              display: 'jacobharv00@gmail.com',
+              href: 'mailto:jacobharv00@gmail.com?subject=Hello%20Jacob',
+            },
+          ].map((item) => (
+            <div key={item.label}>
+              <dt className="font-semibold text-neutral-950 dark:text-white">
+                {item.label}
+              </dt>
+              <dd className="mt-1 break-words">
                 <Link
-                  href={
-                    item === 'jacobharv00@gmail.com' ? `mailto:${item}` : item
-                  }
-                  className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
+                  href={item.href}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-600 transition hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white"
                 >
-                  {item}
+                  {item.display}
                 </Link>
               </dd>
             </div>

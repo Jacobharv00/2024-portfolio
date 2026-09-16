@@ -8,6 +8,8 @@ import ReCAPTCHA from 'react-google-recaptcha'
 
 import type { ChangeEvent } from 'react'
 
+type FieldChangeEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+
 const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 interface FormValues {
@@ -25,7 +27,7 @@ export function ContactForm() {
     message: '',
   })
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: FieldChangeEvent) => {
     const { name, value } = e.target
 
     setFormValues((prev) => ({
@@ -48,13 +50,14 @@ export function ContactForm() {
           <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
             Email Me
           </h2>
-          <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
+          <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50 dark:bg-white/5">
             <TextInput
               required
               label="Name"
               type="text"
               name="name"
               autoComplete="name"
+              maxLength={100}
               value={formValues.name}
               onChange={handleChange}
             />
@@ -64,14 +67,16 @@ export function ContactForm() {
               type="email"
               name="email"
               autoComplete="email"
+              maxLength={254}
               value={formValues.email}
               onChange={handleChange}
             />
-            <TextInput
+            <TextArea
               required
               label="Message"
-              type="text"
               name="message"
+              rows={5}
+              maxLength={2000}
               value={formValues.message}
               onChange={handleChange}
             />
@@ -97,6 +102,32 @@ export function ContactForm() {
   )
 }
 
+function TextArea({
+  label,
+  name,
+  ...props
+}: React.ComponentPropsWithoutRef<'textarea'> & { label: string }) {
+  let id = useId()
+
+  return (
+    <div className="group relative z-0 transition-all focus-within:z-10">
+      <textarea
+        name={name}
+        id={id}
+        {...props}
+        placeholder=" "
+        className="peer block w-full resize-y border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl dark:border-neutral-700 dark:text-white dark:focus:border-white"
+      />
+      <label
+        htmlFor={id}
+        className="pointer-events-none absolute left-6 top-12 -mt-9 origin-left text-base/6 text-neutral-500 transition-all duration-200 peer-focus:-translate-y-1 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-neutral-950 peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-neutral-950 dark:peer-focus:text-white dark:peer-[:not(:placeholder-shown)]:text-white"
+      >
+        {label}
+      </label>
+    </div>
+  )
+}
+
 function TextInput({
   label,
   name,
@@ -111,7 +142,7 @@ function TextInput({
         id={id}
         {...props}
         placeholder=" "
-        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 dark:text-white ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl"
+        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl dark:border-neutral-700 dark:text-white dark:focus:border-white"
       />
       <label
         htmlFor={id}

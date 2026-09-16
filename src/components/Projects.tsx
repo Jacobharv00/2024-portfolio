@@ -64,6 +64,7 @@ function ProjectItem({
             key={link.label}
             href={link.href}
             target="_blank"
+            rel="noopener noreferrer"
             className={clsx(
               'text-sm font-semibold transition',
               invert

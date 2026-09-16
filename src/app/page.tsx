@@ -114,6 +114,7 @@ function VamoSection() {
                 <Link
                   href={product.href}
                   target="_blank"
+            rel="noopener noreferrer"
                   className="mt-6 text-sm font-semibold text-vamo-600 transition hover:text-vamo-700 dark:text-vamo-400 dark:hover:text-vamo-100"
                 >
                   {product.linkLabel}
